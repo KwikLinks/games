@@ -1,0 +1,39 @@
+/* Set the background color to RGB: 87, 250, 177 */
+body {
+    background-color: rgb(87, 250, 177); /* Electric Green */
+}
+
+/* Style for the website title and all text on the page */
+body, .kwiklinks-title, .button {
+    font-family: 'Rubik Iso', sans-serif;
+}
+
+/* Style for the website title */
+.kwiklinks-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Style for the single button */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: white;
+    color: #007BFF;
+}
