@@ -7,7 +7,58 @@
     <title>Student Access Gradebook</title>
     <link rel="icon" href="https://sis.cgresd.net/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap">
-    <link rel="stylesheet" href="styles.css">
+  <style>
+        body {
+            font-family: 'Rubik Iso', sans-serif;
+            background-color: rgb(87, 250, 177);
+            text-align: center;
+        }
+
+        .kwiklinks-title {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 20px auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .button-container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* Adjust as needed */
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px;
+            background-color: blue; /* Change to blue */
+            color: white; /* Set text color to white */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Rubik Iso', sans-serif; /* Add font-family */
+        }
+
+        .button:hover {
+            background-color: black;
+        }
+
+        .no-result-message {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="kwiklinks-title">KwikLinks</div>
@@ -463,6 +514,39 @@
         <!-- Add more rows of buttons as needed -->
         <!-- Repeat the button-row div for 45 rows -->
     </div>
- <script src="script.js"></script>
+<script>
+        function openLink(url) {
+            var win = window.open();
+            var iframe = win.document.createElement('iframe');
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+        }
+
+        function search() {
+            var searchInput = document.getElementById("searchInput").value.toLowerCase();
+            var buttons = document.querySelectorAll(".button");
+            var noResultMessage = document.getElementById("noResultMessage");
+            var hasResults = false;
+
+            buttons.forEach(function(button) {
+                var buttonText = button.textContent.toLowerCase();
+                if (buttonText.includes(searchInput)) {
+                    button.style.display = "block";
+                    hasResults = true;
+                } else {
+                    button.style.display = "none";
+                }
+            });
+
+            if (!hasResults) {
+                noResultMessage.style.display = "block";
+            } else {
+                noResultMessage.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
