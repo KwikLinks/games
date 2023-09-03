@@ -1,39 +1,49 @@
-/* Set the background color to RGB: 87, 250, 177 */
 body {
-    background-color: rgb(87, 250, 177); /* Electric Green */
-}
-
-/* Style for the website title and all text on the page */
-body, .kwiklinks-title, .button {
     font-family: 'Rubik Iso', sans-serif;
+    background-color: rgb(87, 250, 177);
+    text-align: center;
 }
 
-/* Style for the website title */
 .kwiklinks-title {
-    text-align: center;
-    font-size: 36px;
+    font-size: 48px;
     font-weight: bold;
-    margin-top: 20px;
 }
 
-/* Style for the single button */
+.search-container {
+    margin: 20px auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
 .button-container {
+    width: 80%;
+    margin: 0 auto;
     text-align: center;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Adjust as needed */
+    gap: 10px;
 }
 
 .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: white;
-    color: #007BFF;
+    background-color: black;
+    color: white;
+}
+
+.no-result-message {
+    display: none;
+    font-size: 18px;
+    margin-top: 20px;
 }
