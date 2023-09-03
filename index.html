@@ -7,19 +7,14 @@
     <title>Student Access Gradebook</title>
     <link rel="icon" href="https://sis.cgresd.net/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap">
- <style>
-        .button-container {
-            width: 80%; /* Set a fixed width */
-            margin: auto; /* Center the container horizontally */
-            text-align: center; /* Center-align the buttons */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="kwiklinks-title">KwikLinks</div>
      <div class="search-container">
        <div style="text-align: center;">
         <input type="text" id="searchInput" placeholder="Search..." oninput="search()">
+        <p class="no-result-message" id="noResultMessage">That game isn't here quite yet, but you can <a href="https://forms.gle/6aCmZrDfrvrvxJcZ7">make a suggestion!</a></p>
     </div>
     <div class="button-container">
         <!-- Create a grid of buttons -->
@@ -468,37 +463,6 @@
         <!-- Add more rows of buttons as needed -->
         <!-- Repeat the button-row div for 45 rows -->
     </div>
-    <script>
-        function openLink(url) {
-            var win = window.open();
-            var iframe = win.document.createElement('iframe');
-            iframe.style.width = "100%";
-            iframe.style.height = "100%";
-            iframe.style.border = "none";
-            iframe.src = url;
-            win.document.body.appendChild(iframe);
-        }
-
-        function search() {
-            var searchInput = document.getElementById("searchInput").value.toLowerCase();
-            var buttons = document.querySelectorAll(".button");
-            
-            if (searchInput.trim() === "") {
-                // Reset the display style if the search input is empty
-                buttons.forEach(function(button) {
-                    button.style.display = "block";
-                });
-            } else {
-                buttons.forEach(function(button) {
-                    var buttonSearchTerm = button.textContent.toLowerCase(); // Search based on button text
-                    if (buttonSearchTerm.includes(searchInput)) {
-                        button.style.display = "block";
-                    } else {
-                        button.style.display = "none";
-                    }
-                });
-            }
-        }
-    </script>
+ <script src="script.js"></script>
 </body>
 </html>
