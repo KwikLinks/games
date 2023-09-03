@@ -460,7 +460,7 @@
         <!-- Add more rows of buttons as needed -->
         <!-- Repeat the button-row div for 45 rows -->
     </div>
- <script>
+    <script>
         function openLink(url) {
             var win = window.open();
             var iframe = win.document.createElement('iframe');
@@ -475,14 +475,21 @@
             var searchInput = document.getElementById("searchInput").value.toLowerCase();
             var buttons = document.querySelectorAll(".button");
             
-            buttons.forEach(function(button) {
-                var buttonSearchTerm = button.textContent.toLowerCase(); // Search based on button text
-                if (buttonSearchTerm.includes(searchInput)) {
+            if (searchInput.trim() === "") {
+                // Reset the display style if the search input is empty
+                buttons.forEach(function(button) {
                     button.style.display = "block";
-                } else {
-                    button.style.display = "none";
-                }
-            });
+                });
+            } else {
+                buttons.forEach(function(button) {
+                    var buttonSearchTerm = button.textContent.toLowerCase(); // Search based on button text
+                    if (buttonSearchTerm.includes(searchInput)) {
+                        button.style.display = "block";
+                    } else {
+                        button.style.display = "none";
+                    }
+                });
+            }
         }
     </script>
 </body>
