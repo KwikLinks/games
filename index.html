@@ -551,7 +551,7 @@
                 noResultMessage.style.display = "none";
             }
         }
-      // Get all buttons with the class "button"
+        // Get all buttons with the class "button"
         var buttons = document.querySelectorAll(".button");
 
         // Create an array to store button objects with title and link
@@ -569,24 +569,29 @@
             return a.title.localeCompare(b.title);
         });
 
-        // Remove existing buttons
+        // Clear the existing buttons
         buttons.forEach(function(button) {
             button.remove();
         });
 
         // Create and append new buttons with sorted data
+        var buttonContainer = document.createElement("div");
+        buttonContainer.className = "button-container";
         buttonData.forEach(function(data) {
             var button = document.createElement("button");
             button.className = "button";
             button.textContent = data.title;
             button.setAttribute("data-title", data.title);
             button.setAttribute("data-link", data.link);
-            document.body.appendChild(button);
 
             button.addEventListener("click", function() {
                 window.open(data.link);
             });
+
+            buttonContainer.appendChild(button);
         });
+
+        document.body.appendChild(buttonContainer);
     </script>
 </body>
 </html>
