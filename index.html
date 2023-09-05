@@ -551,26 +551,44 @@
                 noResultMessage.style.display = "none";
             }
         }
-  // Get the parent element of the buttons
+        // Get the parent element of the buttons
         var buttonContainer = document.body;
 
         // Get all buttons with the class "button"
         var buttons = Array.from(document.querySelectorAll(".button"));
 
-        // Sort the buttons based on their titles
-        buttons.sort(function(a, b) {
-            var titleA = a.getAttribute("data-title").toLowerCase();
-            var titleB = b.getAttribute("data-title").toLowerCase();
-            return titleA.localeCompare(titleB);
+        // Create an array of button data objects
+        var buttonData = buttons.map(function(button) {
+            return {
+                title: button.getAttribute("data-title"),
+                link: button.getAttribute("data-link")
+            };
+        });
+
+        // Sort the button data array by title
+        buttonData.sort(function(a, b) {
+            return a.title.localeCompare(b.title);
         });
 
         // Clear the existing buttons
         buttonContainer.innerHTML = "";
 
-        // Append the sorted buttons back to the parent element
-        buttons.forEach(function(button) {
+        // Create and append the sorted buttons
+        buttonData.forEach(function(data) {
+            var button = document.createElement("button");
+            button.className = "button";
+            button.textContent = data.title;
+            button.setAttribute("data-title", data.title);
+            button.setAttribute("data-link", data.link);
+            
+            // Add click event to open the link
+            button.addEventListener("click", function() {
+                window.open(data.link);
+            });
+
             buttonContainer.appendChild(button);
         });
+
     </script>
 </body>
 </html>
