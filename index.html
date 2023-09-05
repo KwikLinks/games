@@ -551,47 +551,26 @@
                 noResultMessage.style.display = "none";
             }
         }
+  // Get the parent element of the buttons
+        var buttonContainer = document.body;
+
         // Get all buttons with the class "button"
-        var buttons = document.querySelectorAll(".button");
+        var buttons = Array.from(document.querySelectorAll(".button"));
 
-        // Create an array to store button objects with title and link
-        var buttonData = [];
-
-        // Iterate through the buttons and extract their title and link
-        buttons.forEach(function(button) {
-            var title = button.getAttribute("data-title");
-            var link = button.getAttribute("data-link");
-            buttonData.push({ title: title, link: link });
-        });
-
-        // Sort the array of button objects based on titles
-        buttonData.sort(function(a, b) {
-            return a.title.localeCompare(b.title);
+        // Sort the buttons based on their titles
+        buttons.sort(function(a, b) {
+            var titleA = a.getAttribute("data-title").toLowerCase();
+            var titleB = b.getAttribute("data-title").toLowerCase();
+            return titleA.localeCompare(titleB);
         });
 
         // Clear the existing buttons
+        buttonContainer.innerHTML = "";
+
+        // Append the sorted buttons back to the parent element
         buttons.forEach(function(button) {
-            button.remove();
-        });
-
-        // Create and append new buttons with sorted data
-        var buttonContainer = document.createElement("div");
-        buttonContainer.className = "button-container";
-        buttonData.forEach(function(data) {
-            var button = document.createElement("button");
-            button.className = "button";
-            button.textContent = data.title;
-            button.setAttribute("data-title", data.title);
-            button.setAttribute("data-link", data.link);
-
-            button.addEventListener("click", function() {
-                window.open(data.link);
-            });
-
             buttonContainer.appendChild(button);
         });
-
-        document.body.appendChild(buttonContainer);
     </script>
 </body>
 </html>
