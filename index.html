@@ -19,7 +19,10 @@
             font-weight: bold;
         }
 
-        .search-container {
+         .search-container {
+            background-color: Blue; /* Set the background color */
+            padding: 20px; /* Add some padding for spacing */
+            border-radius: 10px; /* Add rounded corners */
             margin: 20px auto;
         }
 
@@ -60,6 +63,12 @@
         .no-result-message {
             display: none;
             font-size: 18px;
+            margin-top: 20px;
+        }
+     
+      .section-header {
+            font-size: 24px;
+            font-weight: bold;
             margin-top: 20px;
         }
     </style>
@@ -518,7 +527,7 @@
         <!-- Add more rows of buttons as needed -->
         <!-- Repeat the button-row div for 45 rows -->
     </div>
- <script>
+    <script>
         function openLink(url) {
             var win = window.open();
             var iframe = win.document.createElement('iframe');
@@ -532,7 +541,7 @@
         function sortButtonsAlphabetically() {
             var buttonContainer = document.getElementById("buttonContainer");
             var buttons = Array.from(buttonContainer.getElementsByClassName("button"));
-            
+
             buttons.sort(function(a, b) {
                 var textA = a.textContent.toLowerCase();
                 var textB = b.textContent.toLowerCase();
@@ -540,7 +549,20 @@
             });
 
             buttonContainer.innerHTML = "";
+
+            var currentSection = "";
             buttons.forEach(function(button) {
+                var buttonText = button.textContent.toLowerCase();
+                var buttonSection = buttonText.charAt(0).toUpperCase();
+
+                if (currentSection !== buttonSection) {
+                    currentSection = buttonSection;
+                    var sectionHeader = document.createElement("div");
+                    sectionHeader.className = "section-header";
+                    sectionHeader.textContent = currentSection;
+                    buttonContainer.appendChild(sectionHeader);
+                }
+
                 buttonContainer.appendChild(button);
             });
         }
