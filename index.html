@@ -551,6 +551,24 @@
                 noResultMessage.style.display = "none";
             }
         }
+     // Get all buttons with the class "button"
+        var buttons = document.querySelectorAll(".button");
+
+        // Create an array to store the button titles
+        var buttonTitles = [];
+
+        // Iterate through the buttons and extract their titles
+        buttons.forEach(function(button) {
+            buttonTitles.push(button.textContent);
+        });
+
+        // Sort the titles alphabetically
+        buttonTitles.sort();
+
+        // Replace the button titles with the sorted titles
+        buttons.forEach(function(button, index) {
+            button.textContent = buttonTitles[index];
+        });
     </script>
 </body>
 </html>
