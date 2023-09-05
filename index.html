@@ -518,45 +518,7 @@
         <!-- Add more rows of buttons as needed -->
         <!-- Repeat the button-row div for 45 rows -->
     </div>
-    <script>
-        // Get the parent element of the buttons
-        var buttonContainer = document.body;
-
-        // Get all buttons with the class "button"
-        var buttons = Array.from(document.querySelectorAll(".button"));
-
-        // Create an array of button data objects
-        var buttonData = buttons.map(function(button) {
-            return {
-                title: button.getAttribute("data-title"),
-                link: button.getAttribute("data-link")
-            };
-        });
-
-        // Sort the button data array by title
-        buttonData.sort(function(a, b) {
-            return a.title.localeCompare(b.title);
-        });
-
-        // Clear the existing buttons
-        buttonContainer.innerHTML = "";
-
-        // Create and append the sorted buttons
-        buttonData.forEach(function(data) {
-            var button = document.createElement("button");
-            button.className = "button";
-            button.textContent = data.title;
-            button.setAttribute("data-title", data.title);
-            button.setAttribute("data-link", data.link);
-            
-            // Add click event to open the link
-            button.addEventListener("click", function() {
-                window.open(data.link);
-            });
-
-            buttonContainer.appendChild(button);
-        });
-
+ <script>
         function openLink(url) {
             var win = window.open();
             var iframe = win.document.createElement('iframe');
@@ -565,6 +527,22 @@
             iframe.style.border = "none";
             iframe.src = url;
             win.document.body.appendChild(iframe);
+        }
+
+        function sortButtonsAlphabetically() {
+            var buttonContainer = document.getElementById("buttonContainer");
+            var buttons = Array.from(buttonContainer.getElementsByClassName("button"));
+            
+            buttons.sort(function(a, b) {
+                var textA = a.textContent.toLowerCase();
+                var textB = b.textContent.toLowerCase();
+                return textA.localeCompare(textB);
+            });
+
+            buttonContainer.innerHTML = "";
+            buttons.forEach(function(button) {
+                buttonContainer.appendChild(button);
+            });
         }
 
         function search() {
@@ -576,7 +554,7 @@
             buttons.forEach(function(button) {
                 var buttonText = button.textContent.toLowerCase();
                 if (buttonText.includes(searchInput)) {
-                    button.style.display = "block";
+                    button.style.display = "inline-block";
                     hasResults = true;
                 } else {
                     button.style.display = "none";
@@ -589,6 +567,9 @@
                 noResultMessage.style.display = "none";
             }
         }
+
+        // Sort buttons alphabetically initially
+        sortButtonsAlphabetically();
     </script>
 </body>
 </html>
