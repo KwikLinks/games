@@ -1,1 +1,62 @@
+        body {
+            font-family: 'Rubik Mono One', sans-serif;
+            background-color: rgb(87, 250, 177);
+            text-align: center;
+        }
 
+        .kwiklinks-title {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+         .search-container {
+            margin: 20px auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: blue; /* Set the background color to green */
+            border: none;
+            color: blue;
+            border-radius: 10px; /* Add rounded corners */
+            font-weight: bold; /* Add bold font-weight */
+        }
+
+        .button-container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .button {
+            padding: 15px 20px;
+            background-color: blue; /* Change to blue */
+            color: white; /* Set text color to white */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Rubik Mono One', sans-serif; /* Add font-family */
+             width: 16%;
+            margin: 1%; /* Increase margin for spacing */
+            display: inline-block;
+            font-size: 18px; /* Increase font size */
+        }
+
+        .button:hover {
+            background-color: black;
+        }
+
+        .no-result-message {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+     
+      .section-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
