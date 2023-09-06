@@ -586,29 +586,6 @@
             win.document.body.appendChild(iframe);
         }
 
-        function search() {
-            var searchInput = document.getElementById("searchInput").value.toLowerCase();
-            var buttons = document.querySelectorAll(".button");
-            var noResultMessage = document.getElementById("noResultMessage");
-            var hasResults = false;
-
-            buttons.forEach(function(button) {
-                var buttonText = button.textContent.toLowerCase();
-                if (buttonText.includes(searchInput)) {
-                    button.style.display = "inline-block";
-                    hasResults = true;
-                } else {
-                    button.style.display = "none";
-                }
-            });
-
-            if (!hasResults) {
-                noResultMessage.style.display = "block";
-            } else {
-                noResultMessage.style.display = "none";
-            }
-        }
-
         // Automatically categorize buttons
         var buttons = document.querySelectorAll(".button");
         var buttonContainer = document.getElementById("buttonContainer");
@@ -623,7 +600,6 @@
                     sections[section] = document.createElement("div");
                     sections[section].className = "section-header";
                     sections[section].textContent = section.toUpperCase();
-                    buttonContainer.appendChild(sections[section]);
                 }
                 sections[section].appendChild(button);
             } else {
@@ -631,11 +607,43 @@
                     sections["0-9"] = document.createElement("div");
                     sections["0-9"].className = "section-header";
                     sections["0-9"].textContent = "0-9";
-                    buttonContainer.appendChild(sections["0-9"]);
                 }
                 sections["0-9"].appendChild(button);
             }
         });
+
+        function search() {
+            var searchInput = document.getElementById("searchInput").value.toLowerCase();
+
+            buttons.forEach(function(button) {
+                var buttonText = button.textContent.toLowerCase();
+                if (buttonText.includes(searchInput)) {
+                    button.style.display = "inline-block";
+                } else {
+                    button.style.display = "none";
+                }
+            });
+
+            for (var section in sections) {
+                var sectionButtons = sections[section].querySelectorAll(".button");
+                var visibleButtons = Array.from(sectionButtons).filter(function(button) {
+                    return button.style.display !== "none";
+                });
+
+                if (visibleButtons.length === 0) {
+                    sections[section].style.display = "none";
+                } else {
+                    sections[section].style.display = "block";
+                }
+            }
+
+            var noResultMessage = document.getElementById("noResultMessage");
+            if (document.querySelectorAll(".button[style*='display: inline-block;']").length === 0) {
+                noResultMessage.style.display = "block";
+            } else {
+                noResultMessage.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
