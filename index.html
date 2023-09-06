@@ -586,35 +586,6 @@
             win.document.body.appendChild(iframe);
         }
 
-        function sortButtonsAlphabetically() {
-            var buttonContainer = document.getElementById("buttonContainer");
-            var buttons = Array.from(buttonContainer.getElementsByClassName("button"));
-
-            buttons.sort(function(a, b) {
-                var textA = a.textContent.toLowerCase();
-                var textB = b.textContent.toLowerCase();
-                return textA.localeCompare(textB);
-            });
-
-            buttonContainer.innerHTML = "";
-
-            var currentSection = "";
-            buttons.forEach(function(button) {
-                var buttonText = button.textContent.toLowerCase();
-                var buttonSection = buttonText.charAt(0).toUpperCase();
-
-                if (currentSection !== buttonSection) {
-                    currentSection = buttonSection;
-                    var sectionHeader = document.createElement("div");
-                    sectionHeader.className = "section-header";
-                    sectionHeader.textContent = currentSection;
-                    buttonContainer.appendChild(sectionHeader);
-                }
-
-                buttonContainer.appendChild(button);
-            });
-        }
-
         function search() {
             var searchInput = document.getElementById("searchInput").value.toLowerCase();
             var buttons = document.querySelectorAll(".button");
@@ -638,8 +609,33 @@
             }
         }
 
-        // Sort buttons alphabetically initially
-        sortButtonsAlphabetically();
+        // Automatically categorize buttons
+        var buttons = document.querySelectorAll(".button");
+        var buttonContainer = document.getElementById("buttonContainer");
+        var sections = {};
+
+        buttons.forEach(function(button) {
+            var buttonText = button.textContent.trim();
+            var section = buttonText.charAt(0).toLowerCase();
+
+            if (section.match(/[a-z]/)) {
+                if (!sections[section]) {
+                    sections[section] = document.createElement("div");
+                    sections[section].className = "section-header";
+                    sections[section].textContent = section.toUpperCase();
+                    buttonContainer.appendChild(sections[section]);
+                }
+                sections[section].appendChild(button);
+            } else {
+                if (!sections["0-9"]) {
+                    sections["0-9"] = document.createElement("div");
+                    sections["0-9"].className = "section-header";
+                    sections["0-9"].textContent = "0-9";
+                    buttonContainer.appendChild(sections["0-9"]);
+                }
+                sections["0-9"].appendChild(button);
+            }
+        });
     </script>
 </body>
 </html>
