@@ -60,3 +60,33 @@
             font-weight: bold;
             margin-top: 20px;
         }
+
+        /* Style for the navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #007BFF; /* Blue background color for the navbar */
+            padding: 20px;
+        }
+
+        .navbar-left {
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .navbar-right {
+            text-align: right;
+            margin-right: 20px;
+        }
+
+        .navbar-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .navbar-link:hover {
+            background-color: white;
+            color: blue;
+        }
